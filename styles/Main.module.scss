@@ -1,0 +1,100 @@
+.content {
+    width: 350px;
+    max-width: 350px;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    label {
+      padding: 10px 0;
+    }
+    .inputs {
+      width: 100%;
+      padding: 10px 40px;
+      display: flex;
+      flex-direction: column;
+      input {
+        margin-bottom: 10px;
+        height: 30px;
+      }
+      textarea {
+        resize: none;
+        margin-bottom: 10px;
+      }
+    }
+    .uploadContainer {
+      padding: 20px;
+      width: 205px;
+      height: 205px;
+      border: 3px dashed black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: rgba(2, 18, 32, 0.678);
+      }
+    }
+
+    .imageButtons {
+      padding: 40px 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      button {
+        width: 45%;
+        border-radius:6px;
+        display:inline-block;
+        cursor:pointer;
+        font-family:Arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:6px 24px;
+        text-decoration:none;
+        color:#ffffff;
+      }
+      .saveButton {
+        background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+        background-color:#44c767;
+        border:1px solid #18ab29;
+      }
+      .saveButton:hover {
+        background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+        background-color:#5cbf2a;
+      }
+
+      .removeButton {
+        background:linear-gradient(to bottom, #f00e34 5%, #c91221 100%);
+        background-color:#f00e34;
+        border:1px solid #de2535;
+      }
+      .removeButton:hover {
+        background:linear-gradient(to bottom, #c91221 5%, #f00e34 100%);
+        background-color:#c91221;
+      }
+    }
+
+    .deleteAllButton {
+      margin: 10px 0;
+      border: none;
+      width: 75%;
+      background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+      background-color:#f24537;
+      border-radius:5px;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:16px;
+      font-weight:bold;
+      padding:6px 24px;
+      text-decoration:none;
+    }
+    .deleteAllButton:hover {
+      background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+      background-color:#c62d1f;
+    }
+  }

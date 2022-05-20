@@ -1,0 +1,22 @@
+.headerContainer {
+  height: 70px;
+  width: 100%;
+  background-color: rgba(22, 61, 233, 0.76);
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .headerItem {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    i {
+      margin-right: 5px;
+    }
+  }
+}
