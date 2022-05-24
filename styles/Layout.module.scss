@@ -1,3 +1,15 @@
+.content {
+  width: 350px;
+  max-width: 350px;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
 .headerContainer {
   height: 70px;
   width: 100%;
