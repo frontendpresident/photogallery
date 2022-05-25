@@ -5,19 +5,19 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Layout.module.scss";
 
 const Layout = ({ children }) => {
-  const [isPath, setIsPath] = useState(false);
+  const [isHomeRoute, setIsHomeRoute] = useState(false);
   const [title, setTitle] = useState("Home");
   const { pathname } = useRouter();
 
   useEffect(() => {
     if (pathname === "/photogallery") {
       setTitle("Photo gallery");
-      setIsPath(true);
+      setIsHomeRoute(true);
     } else {
       setTitle("Home");
-      setIsPath(false);
+      setIsHomeRoute(false);
     }
-  }, [isPath]);
+  }, [pathname]);
 
   return (
     <div className="container">
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           <Link href="/">
             <div
               className={styles.headerItem}
-              style={{ borderBottom: isPath ? "" : "1px solid white" }}
+              style={{ borderBottom: isHomeRoute ? "" : "1px solid white" }}
             >
               <i className="ri-home-2-fill"></i>
               Home
@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
           <Link href="/photogallery">
             <div
               className={styles.headerItem}
-              style={{ borderBottom: !isPath ? "" : "1px solid white" }}
+              style={{ borderBottom: !isHomeRoute ? "" : "1px solid white" }}
             >
               <i className="ri-gallery-fill"></i>
               Gallery

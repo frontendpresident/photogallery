@@ -8,6 +8,8 @@ import {
   setImageThunk,
   setInfoThunk,
   deleteAllThunk,
+  setDesc,
+  setTitle,
 } from "../redux/actions";
 
 const Main = () => {
@@ -19,7 +21,7 @@ const Main = () => {
     dispatch(getInfoThunk());
   }, []);
 
-  const onChange = (imageList) => {
+  const handleUploadImageChange = (imageList) => {
     setImages(imageList);
   };
 
@@ -31,27 +33,38 @@ const Main = () => {
     dispatch(setInfoThunk(data));
   };
 
+  const handleInfoChange = (e) => {
+    const { name, value } = e.target;
+    name === "desc"
+      ? dispatch(setDesc(value))
+      : dispatch(setTitle(value))
+  }
+
   return (
     <div className={styles.content}>
       <div className={styles.inputs}>
         <label>Tittle:</label>
         <input
           type="text"
+          name="title"
           className={styles.title}
-          onChange={(e) =>
-            dispatch({ type: "SET_TITLE", text: e.target.value })
-          }
+          onChange={handleInfoChange}
           value={state.title}
         />
         <label>Description:</label>
         <textarea
           className={styles.description}
+          name="desc"
           style={{ minHeight: 50 }}
-          onChange={(e) => dispatch({ type: "SET_DESC", text: e.target.value })}
+          onChange={handleInfoChange}
           value={state.description}
         />
       </div>
-      <ImageUploading value={images} onChange={onChange} dataURLKey="data_url">
+      <ImageUploading
+        value={images}
+        onChange={handleUploadImageChange}
+        dataURLKey="data_url"
+      >
         {({
           imageList,
           onImageUpload,
@@ -94,7 +107,7 @@ const Main = () => {
                 </button>
                 <button
                   className={styles.removeButton}
-                  onClick={() => onImageRemove()}
+                  onClick={onImageRemove}
                 >
                   <i className="ri-delete-bin-7-fill"></i>
                 </button>

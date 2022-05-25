@@ -1,5 +1,7 @@
 import PhotoGalleryApi from "../services";
 
+export const setTitle = (text) => ({ type: "SET_TITLE", text })
+export const setDesc = (text) => ({ type: "SET_DESC", text })
 export const getInfo = (info) => ({ type: "GET_INFO", info });
 export const getImages = (images) => ({ type: "GET_IMAGES", images });
 export const setImages = (images) => ({ type: "SET_IMAGE", images });
