@@ -1,9 +1,9 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import PhotoGalleryReducer from './reducer';
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
+import PhotoGalleryReducer from "./reducer";
 
 let store = createStore(PhotoGalleryReducer, applyMiddleware(thunk));
 
-store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => store.getState());
 
 export default store;

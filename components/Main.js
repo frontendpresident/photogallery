@@ -1,60 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Image from 'next/image';
-import ImageUploading from 'react-images-uploading';
-import styles from "../styles/Main.module.scss"
-import CustomHeader from './CustomHeader';
-import { 
-  getInfoThunk, 
-  getImagesThunk, 
-  setImageThunk, 
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
+import ImageUploading from "react-images-uploading";
+import styles from "../styles/Main.module.scss";
+import {
+  getInfoThunk,
+  setImageThunk,
   setInfoThunk,
-  deleteAllThunk 
-} from '../redux/actions';
+  deleteAllThunk,
+  setDesc,
+  setTitle,
+} from "../redux/actions";
 
 const Main = () => {
-  const state = useSelector(state => state)
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
-    dispatch(getInfoThunk())
-  }, [])
+    dispatch(getInfoThunk());
+  }, []);
 
-  const onChange = (imageList) => {
+  const handleUploadImageChange = (imageList) => {
     setImages(imageList);
   };
 
   const setInfo = () => {
     const data = {
       title: state.title,
-      description: state.description
-    }
-    dispatch(setInfoThunk(data))
+      description: state.description,
+    };
+    dispatch(setInfoThunk(data));
+  };
+
+  const handleInfoChange = (e) => {
+    const { name, value } = e.target;
+    name === "desc"
+      ? dispatch(setDesc(value))
+      : dispatch(setTitle(value))
   }
 
   return (
     <div className={styles.content}>
-      <CustomHeader />
       <div className={styles.inputs}>
         <label>Tittle:</label>
         <input
           type="text"
+          name="title"
           className={styles.title}
-          onChange={(e) => dispatch({ type: "SET_TITLE", text: e.target.value })}
+          onChange={handleInfoChange}
           value={state.title}
         />
         <label>Description:</label>
         <textarea
           className={styles.description}
+          name="desc"
           style={{ minHeight: 50 }}
-          onChange={(e) => dispatch({ type: "SET_DESC", text: e.target.value })}
+          onChange={handleInfoChange}
           value={state.description}
         />
       </div>
       <ImageUploading
         value={images}
-        onChange={onChange}
+        onChange={handleUploadImageChange}
         dataURLKey="data_url"
       >
         {({
@@ -62,7 +70,7 @@ const Main = () => {
           onImageUpload,
           onImageRemove,
           isDragging,
-          dragProps
+          dragProps,
         }) => (
           <>
             <div
@@ -71,8 +79,8 @@ const Main = () => {
               onClick={onImageUpload}
               {...dragProps}
             >
-              {images.length > 0
-                ? images.map(item => (
+              {images.length > 0 ? (
+                images.map((item) => (
                   <Image
                     key={item.file.size}
                     src={item.data_url}
@@ -81,25 +89,27 @@ const Main = () => {
                     height={180}
                   />
                 ))
-                : <span>Drag photos here</span>
-              }
+              ) : (
+                <span>Drag photos here</span>
+              )}
             </div>
             {imageList.length > 0 && (
               <div className={styles.imageButtons}>
                 <button
                   className={styles.saveButton}
                   onClick={() => {
-                    dispatch(setImageThunk(imageList[0].data_url))
-                    setInfo()
-                    onImageRemove()
+                    dispatch(setImageThunk(imageList[0].data_url));
+                    setInfo();
+                    onImageRemove();
                   }}
                 >
-                  <i class="ri-save-fill"></i>
+                  <i className="ri-save-fill"></i>
                 </button>
                 <button
                   className={styles.removeButton}
-                  onClick={() => onImageRemove()}>
-                  <i class="ri-delete-bin-7-fill"></i>
+                  onClick={onImageRemove}
+                >
+                  <i className="ri-delete-bin-7-fill"></i>
                 </button>
               </div>
             )}
@@ -113,7 +123,7 @@ const Main = () => {
         Delete ALL photos
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
